@@ -5,7 +5,7 @@
   "milestone": "pm-0001-skeleton",
   "state": "IMPLEMENTING",
   "branch": "feature/pm-0001-skeleton",
-  "commit": null,
+  "commit": "cbd396b (clean single commit; earlier force-pushed history removed to purge redacted identifiers)",
   "current_directive": "PM-0001",
   "completed": [
     "Adopted the authoritative PM control structure from origin/main",
