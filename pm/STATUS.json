@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-08-17T02:10:00Z",
+  "updated_at": "2026-08-17T11:40:00Z",
   "phase": "phase-0",
   "milestone": "pm-0001-skeleton",
-  "state": "IMPLEMENTING",
+  "state": "NEEDS_DECISION",
   "branch": "feature/pm-0001-skeleton",
   "commit": "cbd396b (clean single commit; earlier force-pushed history removed to purge redacted identifiers)",
   "current_directive": "PM-0001",
@@ -15,12 +15,11 @@
     "B-001 and B-002 resolved per PM decisions and archived",
     "Private LAN/Tailscale identifiers redacted from PM records (public-repository hygiene, PM completion item 9); branch history purged via clean re-commit and force-push"
   ],
-  "in_progress": [
-    "Awaiting operator provisioning (approved by D-008/D-009/D-010): tesseract packages, whisper.cpp build tools + pinned build, D-009 share passthrough mounts and /var/lib/podcast-publisher ownership, D-010 resize — python3.13-venv already landed (verified 2026-08-17T01:54Z)",
-    "After provisioning: rerun P01-01, P01-02, P01-05, P01-06, P01-07, P01-08, P01-09 per PM completion item 2, including read-only incoming / writable output-state verification"
+  "in_progress": [],
+  "current_task": "B-003: claimed operator provisioning not present in the designated VM — awaiting PM decision",
+  "blockers": [
+    "B-003"
   ],
-  "current_task": "Operator completes approved provisioning; agent then executes the authoritative rerun batch",
-  "blockers": [],
   "tests": {
     "passed": 4,
     "failed": 2,
@@ -31,7 +30,7 @@
   },
   "manual_tests": [
     { "id": "P01-01", "name": "OS/arch/CPU/memory/disk inventory", "result": "PASS — to be re-recorded after D-010 resize" },
-    { "id": "P01-02", "name": "Python and package tooling", "result": "FAIL at evidence run (venv/ensurepip missing); python3.13-venv observed installed 2026-08-17T01:54Z — PASS pending in the rerun batch" },
+    { "id": "P01-02", "name": "Python and package tooling", "result": "FAIL at evidence run; python3.13-venv briefly working at 2026-08-17T01:54Z then REGRESSED by 11:24Z — see B-003" },
     { "id": "P01-03", "name": "FFmpeg/ffprobe inventory", "result": "PASS — static builds accepted for Phase 0.1 per D-008" },
     { "id": "P01-04", "name": "FFmpeg synthetic 30s MP3 benchmark", "result": "PASS — 1.19s encode (~25x realtime on 1 vCPU), ffprobe-verified, cleaned up" },
     { "id": "P01-05", "name": "Tesseract inventory", "result": "NOT_AVAILABLE — install approved (D-008), awaiting operator" },
@@ -42,6 +41,8 @@
     { "id": "P01-10", "name": "Required network access", "result": "PASS — github.com/pypi.org/files.pythonhosted.org DNS+HTTPS 200" },
     { "id": "P01-11", "name": "Docker/Compose supplementary inventory", "result": "NOT_AVAILABLE — accepted Phase 1 deferral per PM decision; does not block PM-0001" }
   ],
-  "questions_for_program_manager": [],
-  "recommended_next_action": "Operator completes D-008/D-009/D-010 provisioning on the designated VM; agent then runs the authoritative rerun batch (P01-01/02/05/06/07/08/09), records evidence, and returns STATUS to AWAITING_REVIEW with the PR marked ready."
+  "questions_for_program_manager": [
+    "B-003: the operator reported D-008/D-009/D-010 provisioning complete, but verification in the PM-confirmed designated VM at 2026-08-17T11:24Z found none of it present (no resize; tesseract/build-essential/cmake absent; whisper.cpp absent; D-009 paths absent; python3.13-venv regressed). Decide: (A) operator re-applies provisioning to this guest, (B) provisioning landed on a different machine — identify it and provide an access path, or (C) operator-assisted execution per the B-001 fallback. Full evidence: pm/BLOCKERS.md B-003."
+  ],
+  "recommended_next_action": "PM resolves B-003; agent then re-verifies the environment and executes the authoritative rerun batch P01-01/02/05/06/07/08/09."
 }

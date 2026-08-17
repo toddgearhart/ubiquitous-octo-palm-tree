@@ -16,14 +16,13 @@ Run date: 2026-08-17, branch `feature/pm-0001-skeleton`. All evidence was
 collected **inside the guest**; the Program Manager confirmed this guest
 as the designated runtime VM on 2026-08-17 (PR #1 decision comment).
 
-**Provisioning status (post-decision, 2026-08-17T01:54Z):** the operator
-has begun the approved D-008 installs — `python3.13-venv` is now present
-and `python3 -m venv` succeeds. Still pending: tesseract packages,
-build tools for whisper.cpp, the D-009 share passthrough mounts/state
-directory, and the D-010 resize (guest still 1 vCPU / 962 MiB at the
-timestamp above). Rows below reflect the pre-provisioning run; the PM’s
-required rerun batch (P01-01, P01-02, P01-05..P01-09) executes after
-provisioning completes.
+**Provisioning status (post-decision):** the operator reported D-008/
+D-009/D-010 complete on 2026-08-17, but agent verification at
+2026-08-17T11:24Z found none of it present in the designated guest and
+a regression of the earlier `python3.13-venv` fix. See blocker **B-003**
+in `pm/BLOCKERS.md` for the full evidence snapshot. Rows below reflect
+the pre-provisioning run; the PM-required rerun batch (P01-01, P01-02,
+P01-05..P01-09) remains blocked until B-003 is resolved.
 
 Executed row summary: **4 PASS, 2 FAIL, 5 NOT_AVAILABLE** (matches
 `pm/STATUS.json`).
