@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-08-16T23:59:00Z",
+  "phase": "phase-0",
+  "milestone": "runtime-validation",
+  "state": "IMPLEMENTING",
+  "branch": "main",
+  "commit": null,
+  "current_directive": "PM-0001",
+  "completed": [
+    "GitHub PM control structure initialized",
+    "PM-0001 issued"
+  ],
+  "in_progress": [
+    "Project skeleton placeholders",
+    "Phase 0.1 VM runtime inventory and validation"
+  ],
+  "current_task": "Implementation agent executes PM-0001 on the actual VM",
+  "blockers": [],
+  "tests": {
+    "passed": 0,
+    "failed": 0,
+    "skipped": 0,
+    "not_run": 10
+  },
+  "manual_tests": [],
+  "questions_for_program_manager": [],
+  "recommended_next_action": "Execute PM-0001, record evidence, and stop at AWAITING_REVIEW"
+}
