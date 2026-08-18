@@ -1,29 +1,48 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-08-16T23:59:00Z",
+  "updated_at": "2026-08-17T11:40:00Z",
   "phase": "phase-0",
-  "milestone": "runtime-validation",
-  "state": "IMPLEMENTING",
-  "branch": "main",
-  "commit": null,
+  "milestone": "pm-0001-skeleton",
+  "state": "NEEDS_DECISION",
+  "branch": "feature/pm-0001-skeleton",
+  "commit": "cbd396b (clean single commit; earlier force-pushed history removed to purge redacted identifiers)",
   "current_directive": "PM-0001",
   "completed": [
-    "GitHub PM control structure initialized",
-    "PM-0001 issued"
+    "Adopted the authoritative PM control structure from origin/main",
+    "Placeholder skeleton: backend/, frontend/, wordpress-plugin/, migrations/, tests/, scripts/, .github/ — no application features in the diff",
+    "Phase 0.1 inventory executed in the designated runtime VM (PM-confirmed): P01-01..P01-11 recorded with commands, observations, cleanup",
+    "PM decisions recorded as ACCEPTED in pm/DECISIONS.md: D-008 (provisioning, with bounds), D-009 (Option A share passthrough), D-010 (resize to >=4 vCPU / 8 GiB before whisper benchmarks)",
+    "B-001 and B-002 resolved per PM decisions and archived",
+    "Private LAN/Tailscale identifiers redacted from PM records (public-repository hygiene, PM completion item 9); branch history purged via clean re-commit and force-push"
   ],
-  "in_progress": [
-    "Project skeleton placeholders",
-    "Phase 0.1 VM runtime inventory and validation"
+  "in_progress": [],
+  "current_task": "B-003: claimed operator provisioning not present in the designated VM — awaiting PM decision",
+  "blockers": [
+    "B-003"
   ],
-  "current_task": "Implementation agent executes PM-0001 on the actual VM",
-  "blockers": [],
   "tests": {
-    "passed": 0,
-    "failed": 0,
+    "passed": 4,
+    "failed": 2,
     "skipped": 0,
-    "not_run": 10
+    "not_available": 5,
+    "not_run": 0,
+    "note": "Counts mirror pm/TEST_MATRIX.md rows P01-01..P01-11 from the pre-provisioning run; updated after the PM-required rerun batch"
   },
-  "manual_tests": [],
-  "questions_for_program_manager": [],
-  "recommended_next_action": "Execute PM-0001, record evidence, and stop at AWAITING_REVIEW"
+  "manual_tests": [
+    { "id": "P01-01", "name": "OS/arch/CPU/memory/disk inventory", "result": "PASS — to be re-recorded after D-010 resize" },
+    { "id": "P01-02", "name": "Python and package tooling", "result": "FAIL at evidence run; python3.13-venv briefly working at 2026-08-17T01:54Z then REGRESSED by 11:24Z — see B-003" },
+    { "id": "P01-03", "name": "FFmpeg/ffprobe inventory", "result": "PASS — static builds accepted for Phase 0.1 per D-008" },
+    { "id": "P01-04", "name": "FFmpeg synthetic 30s MP3 benchmark", "result": "PASS — 1.19s encode (~25x realtime on 1 vCPU), ffprobe-verified, cleaned up" },
+    { "id": "P01-05", "name": "Tesseract inventory", "result": "NOT_AVAILABLE — install approved (D-008), awaiting operator" },
+    { "id": "P01-06", "name": "Tesseract slide smoke benchmark", "result": "NOT_AVAILABLE — depends on P01-05" },
+    { "id": "P01-07", "name": "whisper.cpp inventory", "result": "NOT_AVAILABLE — build approved (D-008), awaiting operator toolchain" },
+    { "id": "P01-08", "name": "whisper.cpp model benchmark", "result": "NOT_AVAILABLE — after D-010 resize; tiny/base/base.en only per D-008" },
+    { "id": "P01-09", "name": "Mounts and permissions", "result": "FAIL — D-009 Option A approved; awaiting operator share passthrough + state directory" },
+    { "id": "P01-10", "name": "Required network access", "result": "PASS — github.com/pypi.org/files.pythonhosted.org DNS+HTTPS 200" },
+    { "id": "P01-11", "name": "Docker/Compose supplementary inventory", "result": "NOT_AVAILABLE — accepted Phase 1 deferral per PM decision; does not block PM-0001" }
+  ],
+  "questions_for_program_manager": [
+    "B-003: the operator reported D-008/D-009/D-010 provisioning complete, but verification in the PM-confirmed designated VM at 2026-08-17T11:24Z found none of it present (no resize; tesseract/build-essential/cmake absent; whisper.cpp absent; D-009 paths absent; python3.13-venv regressed). Decide: (A) operator re-applies provisioning to this guest, (B) provisioning landed on a different machine — identify it and provide an access path, or (C) operator-assisted execution per the B-001 fallback. Full evidence: pm/BLOCKERS.md B-003."
+  ],
+  "recommended_next_action": "PM resolves B-003; agent then re-verifies the environment and executes the authoritative rerun batch P01-01/02/05/06/07/08/09."
 }
